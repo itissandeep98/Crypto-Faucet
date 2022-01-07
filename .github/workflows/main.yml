@@ -22,7 +22,7 @@ jobs:
             ${{ runner.os }}-react-${{ hashFiles('**/package-lock.json') }}
       - name: publish package
         run: |
-          yarn
+          npm i
           git config user.name "itissandeep98"
           git config user.email "itissandeep98@gmail.com"
           git remote set-url origin https:///respct-club:${{secrets.ACCESS_TOKEN}}@github.com/respct-club/lfg-faucet

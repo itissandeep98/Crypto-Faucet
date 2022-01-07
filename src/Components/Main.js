@@ -8,10 +8,7 @@ function Main() {
 			<div className="jumbotron jumbotron-fluid">
 				<div className="container">
 					<h1 className="display-4">LFG faucet</h1>
-					<p className="lead">
-						This is a modified jumbotron that occupies the entire horizontal
-						space of its parent.
-					</p>
+					<p className="lead">Get free tokens</p>
 				</div>
 			</div>
 			<Faucet />
