@@ -1,8 +1,8 @@
-name: layer0 deploy
+name: gh pages publish
 
 on:
   push:
-    branches: main
+    branches: master
 
 jobs:
   build:
@@ -14,8 +14,16 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
+        - uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }} 
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: publish package
         run: |
-          npm install
-          npm i -g @layer0/cli
-          layer0 deploy  --environment=production --token=${{secrets.layer0DeployToken}}
+          yarn
+          git config user.name "itissandeep98"
+          git config user.email "itissandeep98@gmail.com"
+          git remote set-url origin https:///respct-club:${{secrets.ACCESS_TOKEN}}@github.com/respct-club/lfg-faucet
+          npm run deploy

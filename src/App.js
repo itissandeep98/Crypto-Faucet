@@ -1,23 +1,16 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Faucet from "./Components/Faucet";
-import TokenSend from "./Components/TokenSend";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import Main from "./Components/Main";
 
 function App() {
 	return (
-		<div className="App">
-			<div className="jumbotron jumbotron-fluid">
-				<div className="container">
-					<h1 className="display-4">LFG faucet</h1>
-					<p className="lead">
-						This is a modified jumbotron that occupies the entire horizontal
-						space of its parent.
-					</p>
-				</div>
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
+			<div className="App">
+				<Routes>
+					<Route exact path="/" element={<Main />} />
+				</Routes>
 			</div>
-			<Faucet />
-			<TokenSend />
-		</div>
+		</BrowserRouter>
 	);
 }
 
