@@ -1,14 +1,6 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import {
-	Card,
-	Button,
-	CardBody,
-	CardHeader,
-	Container,
-	Row,
-	Col,
-} from "reactstrap";
+import { Button, Container, Row, Col } from "reactstrap";
 import TokenAbi from "../Config/abi/erc20.json";
 import FaucetAbi from "../Config/abi/faucet.json";
 import { FaucetAddress, TokenAddress } from "../Config/Constants";
@@ -16,21 +8,38 @@ import { showAlert } from "./Alert";
 
 const Faucet = (props) => {
 	const [balance, setBalance] = useState();
+	const [chainID, setChainID] = useState(null);
 	const ethereum = window.ethereum;
+	const provider = new ethers.providers.Web3Provider(ethereum);
 
 	useEffect(() => {
 		getBalance();
+		ethereum.on("chainChanged", () => {
+			window.location.reload();
+		});
+		ethereum.on("accountsChanged", () => {
+			window.location.reload();
+		});
 	}, []);
 
 	async function getBalance() {
 		if (typeof ethereum !== "undefined") {
+			const { chainId } = await provider.getNetwork();
+			setChainID(chainId);
 			const [account] = await window.ethereum.request({
 				method: "eth_requestAccounts",
 			});
-			const provider = new ethers.providers.Web3Provider(ethereum);
+
 			const contract = new ethers.Contract(TokenAddress, TokenAbi, provider);
-			const balance = await contract.balanceOf(account);
-			setBalance((balance / 10 ** 18).toString());
+			contract
+				.balanceOf(account)
+				.then((balance) => setBalance((balance / 10 ** 18).toString()))
+				.catch((err) =>
+					showAlert(
+						"Unable to fetch balance, try switching the network",
+						"error"
+					)
+				);
 		} else {
 			showAlert("Unable to connect to a Wallet", "error");
 		}
@@ -38,7 +47,6 @@ const Faucet = (props) => {
 
 	async function faucet() {
 		if (typeof ethereum !== "undefined") {
-			const provider = new ethers.providers.Web3Provider(ethereum);
 			const signer = provider.getSigner();
 			const contract = new ethers.Contract(FaucetAddress, FaucetAbi, signer);
 			contract
@@ -56,7 +64,6 @@ const Faucet = (props) => {
 	}
 	async function showToken() {
 		if (typeof ethereum !== "undefined") {
-			const provider = new ethers.providers.Web3Provider(ethereum);
 			provider.provider.sendAsync(
 				{
 					method: "metamask_watchAsset",
@@ -82,14 +89,18 @@ const Faucet = (props) => {
 	async function addNetwork() {
 		if (typeof ethereum !== "undefined") {
 			try {
-				const provider = new ethers.providers.Web3Provider(ethereum);
 				provider.provider.sendAsync({
 					method: "wallet_addEthereumChain",
 					params: [
 						{
 							chainId: "0x13881",
-							chainName: "MATIC mumbai",
+							chainName: "Polygon Testnet",
 							rpcUrls: ["https://rpc-mumbai.maticvigil.com/"],
+							nativeCurrency: {
+								name: "MATIC",
+								symbol: "MATIC",
+								decimals: 18,
+							},
 						},
 					],
 				});
@@ -105,7 +116,7 @@ const Faucet = (props) => {
 			<Row>
 				<h2>Recieve INR to your wallet</h2>
 				<hr />
-				<h5>You currently have {balance} INR</h5>
+				<h5>You currently have {balance ?? 0} INR</h5>
 			</Row>
 
 			<Row>
@@ -116,8 +127,13 @@ const Faucet = (props) => {
 					<Button onClick={showToken} color="primary" className="rounded-pill">
 						View Token in MetaMask
 					</Button>
-					<Button onClick={addNetwork} color="primary" className="rounded-pill">
-						Switch Network
+					<Button
+						onClick={addNetwork}
+						color="primary"
+						className="rounded-pill"
+						disabled={chainID === 80001}
+					>
+						Add/Switch Network
 					</Button>
 				</Col>
 			</Row>
