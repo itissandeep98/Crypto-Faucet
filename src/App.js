@@ -7,7 +7,15 @@ function App() {
 		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<div className="App">
 				<Routes>
-					<Route exact path="/" element={<Main />} />
+					<Route path="/" element={<Main />} />
+					<Route
+						path="*"
+						element={
+							<main style={{ padding: "1rem" }}>
+								<p>There's nothing here!</p>
+							</main>
+						}
+					/>
 				</Routes>
 			</div>
 		</BrowserRouter>
