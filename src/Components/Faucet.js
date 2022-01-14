@@ -121,7 +121,12 @@ const Faucet = (props) => {
 
 			<Row>
 				<Col className="d-flex justify-content-around mt-4">
-					<Button onClick={faucet} color="primary" className="rounded-pill">
+					<Button
+						onClick={faucet}
+						color="primary"
+						className="rounded-pill"
+						disabled={balance > 15}
+					>
 						Request Token!
 					</Button>
 					<Button onClick={showToken} color="primary" className="rounded-pill">
