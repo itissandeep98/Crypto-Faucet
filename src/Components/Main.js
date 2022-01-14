@@ -1,19 +1,22 @@
-import React from "react";
+import { Container, Row, Col } from "reactstrap";
 import Faucet from "./Faucet";
-import TokenSend from "./TokenSend";
+import Info from "./Info";
 
 function Main() {
 	return (
-		<>
-			<div className="jumbotron jumbotron-fluid">
-				<div className="container">
-					<h1 className="display-4">LFG faucet</h1>
-					<p className="lead">Get free tokens</p>
-				</div>
-			</div>
-			<Faucet />
-			<TokenSend />
-		</>
+		<Container>
+			<Row>
+				<Col className="text-center">
+					<h1 className="display-4">LFG Faucet</h1>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<Faucet />
+					<Info />
+				</Col>
+			</Row>
+		</Container>
 	);
 }
 

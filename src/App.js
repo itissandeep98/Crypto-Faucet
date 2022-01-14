@@ -5,7 +5,7 @@ import Main from "./Components/Main";
 function App() {
 	return (
 		<BrowserRouter basename={process.env.PUBLIC_URL}>
-			<div className="App">
+			<div className="App bg-dark text-white">
 				<Routes>
 					<Route path="/" element={<Main />} />
 					<Route

@@ -2,8 +2,7 @@ import { useState } from "react";
 import { ethers } from "ethers";
 import { Card, Button, CardBody, CardHeader } from "reactstrap";
 import TokenAbi from "../Config/abi/erc20.json";
-
-const tokenAddress = "0x51F6c7Ad98B1a644452ECf05eDDCa70FD5ec0A30";
+import { TokenAddress } from "../Config/Constants";
 
 const TokenSend = (props) => {
 	const [userAccount, setUserAccount] = useState();
@@ -19,7 +18,7 @@ const TokenSend = (props) => {
 			await requestAccount();
 			const provider = new ethers.providers.Web3Provider(window.ethereum);
 			const signer = provider.getSigner();
-			const contract = new ethers.Contract(tokenAddress, TokenAbi, signer);
+			const contract = new ethers.Contract(TokenAddress, TokenAbi, signer);
 			const transation = await contract.transfer(userAccount, amount);
 			await transation.wait();
 			console.log(`${amount} Coins successfully sent to ${userAccount}`);

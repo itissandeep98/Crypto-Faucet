@@ -1,0 +1,27 @@
+[
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "extractToken",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "respct",
+		"outputs": [{ "name": "", "type": "address" }],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [{ "name": "_respct", "type": "address" }],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{ "payable": true, "stateMutability": "payable", "type": "fallback" }
+]
