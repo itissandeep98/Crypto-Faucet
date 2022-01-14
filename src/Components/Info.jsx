@@ -8,6 +8,9 @@ function Info() {
 					<h2>Important Links</h2>
 					<ul>
 						<li>
+							Get Free <a href="https://faucet.polygon.technology/">Matic</a>
+						</li>
+						<li>
 							Download <a href="https://metamask.io/download">MetaMask</a>
 						</li>
 						<li>
