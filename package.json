@@ -40,11 +40,5 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	},
-	"devDependencies": {
-		"@layer0/cli": "^4.8.5",
-		"@layer0/core": "^4.8.5",
-		"@layer0/devtools": "^4.8.5",
-		"@layer0/prefetch": "^4.8.5"
 	}
 }

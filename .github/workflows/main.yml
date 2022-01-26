@@ -14,17 +14,12 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: package-lock.json
-      - uses: actions/cache@v2
-        with:
-          path: ${{ github.workspace }}/build
-          key: ${{ runner.os }}-react-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: |
-            ${{ runner.os }}-react-${{ hashFiles('**/package-lock.json') }}
       - name: publish package
         run: |
-          npm i -g @layer0/cli
           npm i
-          npm run build
-          layer0 deploy  --token=${{secrets.layer0DeployToken}} --environment=production
+          git config user.name "itissandeep98"
+          git config user.email "itissandeep98@gmail.com"
+          git remote set-url origin https://itissandeep98:${{secrets.ACCESS_TOKEN}}@github.com/itissandeep98/Crypto-Faucet
+          npm run deploy
