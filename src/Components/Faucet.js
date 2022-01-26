@@ -52,6 +52,7 @@ const Faucet = (props) => {
 			contract
 				.extractToken()
 				.then((res) => {
+					console.log(res);
 					showAlert("Transaction Successfull", "success");
 					getBalance();
 				})
@@ -71,8 +72,9 @@ const Faucet = (props) => {
 						type: "ERC20",
 						options: {
 							address: TokenAddress,
-							symbol: "INR",
+							symbol: "SANDY",
 							decimals: 18,
+							image: "https://avatars.githubusercontent.com/u/44255731?v=4",
 						},
 					},
 					id: Math.round(Math.random() * 100000),

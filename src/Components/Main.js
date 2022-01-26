@@ -7,7 +7,7 @@ function Main() {
 		<Container>
 			<Row>
 				<Col className="text-center">
-					<h1 className="display-4">LFG Faucet</h1>
+					<img src="/icons/logo-full.png" />
 				</Col>
 			</Row>
 			<Row>

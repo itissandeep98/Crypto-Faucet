@@ -11,14 +11,14 @@
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "respct",
+		"name": "sandy",
 		"outputs": [{ "name": "", "type": "address" }],
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
 	},
 	{
-		"inputs": [{ "name": "_respct", "type": "address" }],
+		"inputs": [{ "name": "_sandy", "type": "address" }],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "constructor"

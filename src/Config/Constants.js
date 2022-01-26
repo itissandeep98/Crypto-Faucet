@@ -1,3 +1,3 @@
-export const FaucetAddress = "0x160475eaa621670c5346091455e6be3c721f456c";
+export const FaucetAddress = "0x9a174D25601A9162043B68867ecc955DF84832Cb";
 
-export const TokenAddress = "0xd7e14191eA71179171f3C85EcDDf1cE06E820013";
+export const TokenAddress = "0x602f925c008673a9cfb4be133e5359a52eec18a1";
