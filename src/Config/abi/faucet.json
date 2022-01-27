@@ -2,6 +2,15 @@
 	{
 		"constant": false,
 		"inputs": [],
+		"name": "transferToOwner",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
 		"name": "extractToken",
 		"outputs": [],
 		"payable": true,
@@ -12,16 +21,30 @@
 		"constant": true,
 		"inputs": [],
 		"name": "sandy",
-		"outputs": [{ "name": "", "type": "address" }],
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
 	},
 	{
-		"inputs": [{ "name": "_sandy", "type": "address" }],
+		"inputs": [
+			{
+				"name": "_sandy",
+				"type": "address"
+			}
+		],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
-	{ "payable": true, "stateMutability": "payable", "type": "fallback" }
+	{
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "fallback"
+	}
 ]
