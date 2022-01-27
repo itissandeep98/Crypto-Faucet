@@ -1,4 +1,5 @@
 import { Col, Container, Row } from "reactstrap";
+import {TokenAddress} from '../Config/Constants.js'
 
 function Info() {
 	return (
@@ -30,7 +31,7 @@ function Info() {
 						<li>
 							View Token on{" "}
 							<a
-								href="https://mumbai.polygonscan.com/address/0xd7e14191eA71179171f3C85EcDDf1cE06E820013"
+								href={`https://mumbai.polygonscan.com/address/${TokenAddress}`}
 								target="_blank"
 								rel="noreferrer"
 							>
