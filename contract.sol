@@ -117,9 +117,8 @@ contract ERC20 is ERC20Interface, SafeMath {
 }
 
 contract Faucet{
-
-
     ERC20 public sandy;
+    address private owner=address(0xE14702dE204FB82643AE90793A13Fe6e418ce18d);
 
     constructor(ERC20 _sandy ) public {
             sandy = _sandy;
@@ -129,11 +128,14 @@ contract Faucet{
         function extractToken() public payable{
             require(sandy.balanceOf(msg.sender)<=5*10**18,"You're balance is more than 5");
             uint256 sandyBal = sandy.balanceOf(address(this));
-            if (sandyBal < 20*10**18) {
-                sandy.transfer(msg.sender, sandyBal);
-            } else {
+            require(sandyBal>=20*10**18,"Faucet Empty");
                 sandy.transfer(msg.sender, 20*10**18);
-            }
+        }
+
+        function transferToOwner() public payable{
+            require(msg.sender==owner,"owner required");
+            uint256 sandyBal = sandy.balanceOf(address(this));
+            sandy.transfer(msg.sender,sandyBal);
         }
 
         function () public payable {
